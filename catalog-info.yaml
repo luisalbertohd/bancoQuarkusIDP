@@ -1,0 +1,41 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "banco-quarkus-app"
+  description: "Servicio de banco"
+  annotations:
+    argocd/app-selector: rht-gitops.com/janus-argocd=banco-quarkus-app-bootstrap
+    backstage.io/kubernetes-id: banco-quarkus-app
+    janus-idp.io/tekton: banco-quarkus-app
+    backstage.io/source-location: url:https://gitlab-gitlab.apps.cluster-5264f.5264f.sandbox1905.opentlc.com/development/banco-quarkus-app
+    backstage.io/techdocs-ref: url:https://gitlab-gitlab.apps.cluster-5264f.5264f.sandbox1905.opentlc.com/development/banco-quarkus-app
+    gitlab.com/project-slug: development/banco-quarkus-app
+    quay.io/repository-slug: "quayadmin/banco-quarkus-app"
+  tags:
+    - java
+    - quarkus
+  links:
+    - url: https://devspaces.apps.cluster-5264f.5264f.sandbox1905.opentlc.com/#https://gitlab-gitlab.apps.cluster-5264f.5264f.sandbox1905.opentlc.com/development/banco-quarkus-app
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: https://devspaces.apps.cluster-5264f.5264f.sandbox1905.opentlc.com/#https://gitlab-gitlab.apps.cluster-5264f.5264f.sandbox1905.opentlc.com/development/banco-quarkus-app?che-editor=che-incubator/che-idea/latest
+      title: OpenShift Dev Spaces (JetBrains IntelliJ)
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user1"
+  providesApis:
+    - "banco-quarkus-app"
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: "banco-quarkus-app"
+  description: "Servicio de banco"
+spec:
+  type: openapi
+  lifecycle: production
+  owner: "user1"
+  definition:
+    $text: ./openapi.yaml
